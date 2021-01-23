@@ -1,4 +1,18 @@
-var time = [[0, 0], [5, 9], [5, 5]]
+// Setting up Light & Dark Themes
+var toggle_button = document.getElementById("theme-change");
+
+toggle_button.addEventListener("click", function() {
+    document.body.classList.toggle("dark-theme");
+
+    if (document.body.classList.contains("dark-theme")) {
+        toggle_button.src = "assets/moon-light.png";
+    } else {
+        toggle_button.src = "assets/moon-dark.png";
+    }
+});
+
+// Actual Timer
+var time = [[0, 0], [0, 0], [0, 0]]
 
 function stringifyTime() {
     let string_time = [];
@@ -41,4 +55,31 @@ function updateClock() {
     clock.innerHTML = stringifyTime();
 }
 
+// Updating the below timers
+function updateSecondaryTimers() {
+    let stopwatch_time = {
+        hours: Number(time[0][0].toString().concat(time[0][1].toString())),
+        minutes: Number(time[1][0].toString().concat(time[1][1].toString())),
+        seconds: Number(time[2][0].toString().concat(time[2][1].toString())),
+    };
+
+    let total_seconds = stopwatch_time["seconds"] + (stopwatch_time["minutes"] * 60) + (stopwatch_time["hours"] * 3600);
+
+    console.log(total_seconds);
+
+    for (const i of document.getElementsByTagName("span")) {
+        if (i.id === "span-days") {
+            i.innerHTML = total_seconds / 86400;
+        } else if (i.id === "span-weeks") {
+            i.innerHTML = total_seconds / (86400 * 7);
+        } else if(i.id === "span-months") {
+            i.innerHTML = total_seconds / (86400 * 7 * 31);
+        } else {
+            i.innerHTML = total_seconds / (86400 * 7 * 31 * 12);
+        }
+
+    }
+}
+
 setInterval(updateClock, 1000);
+setInterval(updateSecondaryTimers, 1000);
