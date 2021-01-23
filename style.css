@@ -3,6 +3,18 @@
     padding: 0;
 }
 
+*.dark-theme {
+    color: white;
+}
+
+body {
+    background-color: white;
+}
+
+body.dark-theme {
+    background-color: #121212;
+}
+
 .main-content {
     text-align: center;
 }
@@ -10,6 +22,10 @@
 .main-content h1 {
     font-family: 'Major Mono Display', monospace;
     padding: 15px;
+}
+
+.main-content h1 dark-theme {
+    color: white;
 }
 
 .main-content p {
@@ -23,4 +39,12 @@
     font-size: 180px;
     font-weight: 500;
     font-family: 'Roboto', sans-serif;
+}
+
+#theme-change {
+    height: 65px;
+    width: 44.39px;
+    float: right;
+    margin-right: 40px;
+    margin-top: -565px;
 }
